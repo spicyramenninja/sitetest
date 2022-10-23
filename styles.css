@@ -1,0 +1,81 @@
+@font-face {
+font-family: 'azonix';
+src: url("Azonix.woff") format("opentype");
+}
+
+@font-face {
+    font-family: 'roboto-light';
+    src: url("Roboto-Light.woff") format("opentype");
+}
+.card-collection {
+    display: grid;
+    grid-template-columns: 50% 50%;
+    padding-top: 1vh;
+    padding-left: 15vw;
+    padding-right: 15vw;
+  }
+  .social {
+    padding: 3%;
+    margin: auto;
+    position: relative;
+    top: 50px;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.4);
+    width: 30vw;
+    border-radius: 10px;
+    transition: .5s;
+  }
+
+  .social:hover {
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.7);
+  }
+
+.title {
+    position: relative;
+    height: 35vh;
+    background-color:#123456;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.5);
+}
+
+.titleText {
+  position: absolute;
+  font-family: 'azonix';
+  color: white;
+  top: 50%;
+  left: 50%;
+  transform:
+  translate(-50%,-50%);
+  overflow: hidden;
+  border-right: .15em solid red;
+  white-space: nowrap;
+  max-width: 0;
+  animation: typing 3s forwards;
+}
+
+@keyframes typing {
+  from { max-width: 0 }
+  to { max-width: 900px;}
+}
+
+.titleBG {
+  width: 100%;
+  height: 100%;
+  background-size : cover;
+  background-position-y: 70%;
+  filter: sepia(100%) saturate(300%) brightness(50%) hue-rotate(180deg);
+}
+
+.glow {
+  color: #fff;
+  -webkit-animation: glow 1s ease-in-out infinite alternate;
+  -moz-animation: glow 1s ease-in-out infinite alternate;
+  animation: glow 1s ease-in-out infinite alternate;
+}
+
+@keyframes glow {
+  from {
+    text-shadow: 0 0 2px #fff, 0 0 4px #fff, 0 0 6px #006eff, 0 0 8px #006eff, 0 0 10px #006eff, 0 0 12px #006eff, 0 0 14px #006eff;
+  }
+  to {
+    text-shadow: 0 0 8px #fff, 0 0 10px #9dc8ff, 0 0 12px #9dc8ff, 0 0 14px #9dc8ff, 0 0 16px #9dc8ff, 0 0 18px #9dc8ff, 0 0 20px #9dc8ff;
+  }
+}

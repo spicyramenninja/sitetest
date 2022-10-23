@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="bootstrap.css" rel="stylesheet">
+        <title>LHS Robotics</title>
+        <link rel="icon" type="image/x-icon" href="images\logos\favicon.ico" type="text/css" media="all">
+        <link rel="stylesheet" href="styles.css">
+        <script src="bootstrap.js"></script>
+        <style>
+        .squeak {
+          position: absolute;
+          top: 30vh;
+          left: 50vw;
+          z-index: 3;
+        }
+        .overlay {
+          position: fixed;
+          width: 100%;
+          height: 100%;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          background: rgba(50, 50, 50, 0.85);
+          box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+          backdrop-filter: blur(6.5px);
+          display: grid;
+          grid-template-rows: 1fr 1fr;
+          z-index: 1;
+          transition: 2s;
+          transition-delay: 4s;
+        }
+        .logo {
+          margin-left: auto;
+          margin-right: auto;
+          left: 0;
+          right: 0;
+          position:absolute;
+          height: 40vh;
+          width: 40vh;
+          -webkit-filter: drop-shadow(1px 1px 0 white)
+                          drop-shadow(-1px -1px 0 white);
+          filter: drop-shadow(1px 1px 0 white) 
+                  drop-shadow(-1px -1px 0 white);
+        }
+        @keyframes rotation {
+        from {
+          transform: rotate(0deg);
+        }
+        to {
+          transform: rotate(359deg);
+        }
+        }
+        .gearDivs {
+          max-width: 100%;
+          width: 100%;
+          position: relative;
+        }
+        .gear {
+          margin:0 auto;
+          display:table;
+          left: 0;
+          right: 0;
+          -webkit-filter: drop-shadow(1px 1px 0 white)
+                          drop-shadow(-1px -1px 0 white);
+          filter: drop-shadow(1px 1px 0 white) 
+                  drop-shadow(-1px -1px 0 white);
+        }
+        @keyframes fade {
+        from {
+          background-color: rgba(0, 0, 0, 0.4);
+          color: white;
+        }
+        to {
+          background-color: rgba(0, 0, 0, 0);
+          color: rgba(0, 0, 0, 0);
+        }
+        }
+        @keyframes fade2 {
+        from {
+          opacity: 1;
+        }
+        to {
+          opacity: 0;
+        }
+        }
+        @keyframes slide {
+        from {
+          transform: translate(0px, 0px);
+        }
+        to {
+          transform: translate(0px, -500px);
+        }
+        }
+        </style>
+    </head>
+
+    <body style="overflow: hidden;">
+
+      <div class="overlay" id = "dark" style="background: rgba(0, 0, 0, 0.4); z-index: 4; backdrop-filter: blur(0px);">
+        <button type="button" id="exit" style="position: absolute; top: 15px; left: 15px; z-index: 15; background-color: transparent; color: white; font-family: 'azonix'; border-color: white; border-radius: 10px; font-size: 20px; box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5); transition: 1s;">SKIP</button>
+      </div>
+      <div class="overlay" id = "hint" style="z-index: 4; height: 450px; width: 50%; margin: auto; border-radius: 10px; color: white; background: rgba(128, 128, 128, 0.5); padding-left: 5%; padding-right: 5%; align-items: center; justify-content: center; display: flex; box-shadow: 0 4px 30px rgba(0, 0, 0, 1); transition: 1s; transition-delay: 0s;">
+        <button type="button" id = "hinty" class="btn-close btn-close-white" aria-label="Close" style="position: absolute; top: 10%; right: 5%;"></button>
+        <h2>Use WASD keys to control Squeaky. Move to the gears to pick them up one at a time and move them back to the lion logo to complete it!</h2>
+      </div>
+
+      <div class="overlay" id = "glass" style="z-index: 3;">
+        <div style="display:relative;" id="layer">
+          <img src="images\logos\gear1.png" alt="" class="logo" style="transform-origin: 62% 73%; display: none;" id="s">
+          <img src="images\logos\gear2.png" alt="" class="logo" style="transform-origin: 88% 51%; display: none;" id="m">
+          <img src="images\logos\gear3.png" alt="" class="logo" style="transform-origin: 65% 32%; display: none;" id="b">
+          <img src="images\logos\lion.png" alt="" class="logo" style="z-index:1;" id="lion">
+        </div>
+        <div style="display:grid; grid-template-columns: repeat(3, minmax(0, 1fr)); margin-top: 20vh;">
+          <div class="gearDivs">
+            <img src="images\logos\gear.png" alt="" style="height: 9vh; width: 9vh;" class="gear" id="med">
+          </div>
+          <div class="gearDivs">
+            <img src="images\logos\gear.png" alt="" style="height: 13vh; width: 13vh;" class="gear" id="big">
+          </div>
+          <div class="gearDivs">
+            <img src="images\logos\gear.png" alt="" style="height: 7vh; width: 7vh;" class="gear" id="small">
+          </div>
+        </div>
+      </div>
+      <div id="squeaky" class="squeak">
+        <img src="images\logos\mouse.png" style="width: 10vh; height: 25vh; position: relative; top: 0; left: 0;">
+      </div>
+
+      <nav class="navbar navbar-dark navbar-expand-lg shadow-lg p-3 mb-5 py-0" style="position: fixed; width: 100%; background-color: #123456; z-index: 2;">
+      <div class="container-fluid">
+      <img src="images\logos\lion2.png" width="50" height="50" alt="">
+      <a class="navbar-brand" href="index.html" style="padding-left: 20px; font-family: 'azonix';">RoboTech</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item glow">
+            <a class="nav-link active" aria-current="page" href="ourRobot.html" style="font-family: 'roboto-light';">Our Robot</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="social.html" style="font-family: 'roboto-light';">Social</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="ourTeam.html" style="font-family: 'roboto-light';">Our Team</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="about.html" style="font-family: 'roboto-light';">About Us</a>
+          </li>
+          <!-- <div class="form-check form-switch nav-item" style="padding-left: 100px;">
+            <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
+            <label class="form-check-label" for="flexSwitchCheckDefault"></label>
+          </div> -->
+        </ul>
+      </div>
+      </div>
+      </nav>
+
+
+
+      <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel" style="width: 100%; position: relative;">
+        <div style="position: absolute; z-index: 1; top: 50%; left: 50%; transform: translate(-50%,-50%); height: 80vh; margin-top: 100px;">
+          <h1 style="font-family: 'azonix'; color: white; font-size: 10vw;" class="glow">RoboTech</h1>
+          <h1 style="font-family: 'roboto-light'; color: white; font-size: 3vw; text-align: center; text-shadow: -2px -2px 0 #000, 2px -2px 0 #000, -2px 2px 0 #000, 2px 2px 0 #000;">Using AI to Supply</h1>
+        </div>
+
+        <div class="carousel-inner" style="height: 80vh;">
+
+          <div class="carousel-item active">
+            <img src="images\pics\IMG_1814.jpg" alt="" style="width: 100%; filter: sepia(100%) saturate(300%) brightness(50%) hue-rotate(180deg);">
+          </div>
+
+          <div class="carousel-item">
+            <img src="images\pics\20221021_170246.jpg" alt="" style="width: 100%; filter: sepia(100%) saturate(300%) brightness(50%) hue-rotate(180deg);">
+          </div>
+
+          <div class="carousel-item">
+            <img src="images\pics\IMG.jpg" alt="" style="width: 100%; filter: sepia(100%) saturate(300%) brightness(50%) hue-rotate(180deg);">
+          </div>
+
+          <div class="carousel-item">
+            <img src="images\pics\20221021_170256.jpg" alt="" style="width: 100%; filter: sepia(100%) saturate(300%) brightness(50%) hue-rotate(180deg);">
+          </div>
+
+        </div>
+
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev" style="z-index: 0;">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next" style="z-index: 0;">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+      </div>
+
+      <div style="display: flex; padding: 2%; justify-content: center;">
+        <a href="https://www.bestrobotics.org/site/">
+          <img src="images\logos\BESTRobotics_Logo.jpg" alt="" style="width: 40vw; padding-right: 3%;">
+        </a>
+        <iframe src="https://www.youtube.com/embed/qF3WiM_Mgco" title="2022 Made2Order Teaser" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="padding-left: 3%; width: 40vw;"></iframe>
+      </div>
+
+      <script src="game.js"></script>
+    </body>
+</html>

@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+  <style>
+    .flexContainer {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding-left: 1vw;
+      padding-top: 1vh;
+      /* margin: 10px; */
+      padding: 50px;
+    }
+    .aboutImg {
+      border-radius: 5px;
+      border: 5px solid red;
+      padding: 0px;
+      width: 25vw;
+      flex-basis: auto;
+      
+    }
+    .text {
+      padding-left: 3vw;
+      line-height: 3vh;
+    }
+    .robot-container {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      width: 100%;
+      height: 100vh;
+    }
+    .robot-image {
+      align-self: center;
+      width: 80vw;
+      height: auto;
+      background-color: blue;
+      position: relative;
+      
+    }
+    .btn {
+      position: absolute;
+    }
+
+    .btn-1 {
+      left: 85%;
+      top:60%;
+    }
+    .btn-2{
+      left: 45%;
+      top:12%;
+    }
+    .btn-3{
+      left: 20%;
+      top:65%;
+      
+    }
+
+</style>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="bootstrap.css" rel="stylesheet">
+        <title>LHS Robotics</title>
+        <link rel="icon" type="image/x-icon" href="images\logos\favicon.ico" type="text/css" media="all">
+        <link rel="stylesheet" href="styles.css">
+        <!-- <script src="bootstrap.js"></script> -->
+        <!-- <script src="jquery-3.6.1.min.js"></script> -->
+        
+      
+    </head>
+    <body>
+      <nav class="navbar navbar-dark navbar-expand-lg shadow-lg p-3 mb-5 py-0" style="position: fixed; width: 100%; background-color: #123456; z-index: 10;">
+        <div class="container-fluid">
+        <img src="images\logos\lion2.png" width="50" height="50" alt="">
+        <a class="navbar-brand" href="index.html" style="padding-left: 20px; font-family: 'azonix';">RoboTech</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link active glow" aria-current="page" href="ourRobot.html" style="font-family: 'roboto-light';">Our Robot</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="social.html" style="font-family: 'roboto-light';">Social</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="ourTeam.html" style="font-family: 'roboto-light';">Our Team</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="about.html" style="font-family: 'roboto-light';">About Us</a>
+            </li>
+            
+          </ul>
+        </div>
+        </div>
+        </nav>
+
+        <div style="height:50px; background-color: #123456;">
+
+        </div>
+        <div class="title">
+          <div class="titleBG" style="background-image: url(images/pics/IMG_2007.jpg); background-position-y: 20%;"></div>
+          <h1 class="titleText">Our Robot</h1>
+        </div>
+
+        <div class="flexContainer">
+          <img src="images/pics/rob.jpg" class=aboutImg></img>
+
+          <div class="text">
+            <h1 style="font-family: 'azonix';">G.A.R.F.I.E.L.D.</h1>
+            <h4 style="font-family: 'roboto-light'; padding-top: 1%;">Guided Advanced Robotic Field Intelligence Equipped for Large-scale Delivery</h4>
+            <h2 style="font-family: 'roboto-light'; padding-top: 3%; line-height: 2.5vw;">GARFIELD executes deliveries with high precision and speed to ensure the satisfaction of our customers. He is a revolutionary concept that will definitely improve the logistical systems of the world. There will be a very low price at launch with a quick return for investors, a true marvel of engineering. GARFIELD has top-notch compatibility with SQUEAKY, ensuring maximum efficiency. Check out the interactive blueprint below for more details about the specific mechanisms in place that contribute to his functionality.</h2>
+          </div>
+        </div>
+
+        <div style="height: 100px; background-color:#123456"></div>
+        
+        <div class="robot-container">
+
+          <div class="robot-image"> 
+            <img src="images/pics/blueprintRobot.jpg" style="width:80vw; height: auto; border: 5px solid #123456;">
+          
+            <button class="btn btn-1 btn-danger" data-toggle="popover" title="Grabber System" data-bs-content="A servo lowers a rod down and hooks onto a box to pull or push the box">1</buttton>
+            
+            <button class="btn btn-2 btn-danger" data-toggle="popover" title="Dropper System" data-bs-content="Wheel cartridge and dropper system in which the wheels are loaded onto the robot to quickly mount on SQUEAKY (the field robot)">2</button>
+            
+            <button class="btn btn-3 btn-danger" data-toggle="popover" title="Arm (Full ROM)" data-bs-content="An arm with full range of motion (ROM) with hooks at the end to carry field robot's batter and the field robot's arm into place. There is also the PVC semi-circle to grab onto the control levers and move them around.">3</button>
+
+          </div>
+
+            
+        </div>
+        
+        
+        <script src="popper.min.js"></script>
+        <script src="bootstrap.bundle.min.js"></script>
+        <script>
+          const popoverTriggerList = document.querySelectorAll('[data-toggle="popover"]')
+          const popoverList = [...popoverTriggerList].map(popoverTriggerEl => new bootstrap.Popover(popoverTriggerEl))
+        </script>
+    </body>
+</html>
